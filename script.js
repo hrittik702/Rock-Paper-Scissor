@@ -8,7 +8,7 @@ let rounds = 0;
 let win_ratio = () => {
   if (your_score === 0 && computer_score === 0) return 0;
   else if (computer_score === 0) return your_score;
-  else return your_score / computer_score;
+  else return (your_score / computer_score).toFixed(1);
 };
 
 // Changes
