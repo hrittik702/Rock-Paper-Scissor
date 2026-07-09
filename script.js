@@ -3,8 +3,9 @@
 // winner = -1 (computer win)
 
 let your_score = 0;
-let computer_score = 0;
+let comp_score = 0;
 let rounds = 0;
+
 let win_ratio = () => {
   if (your_score === 0 && computer_score === 0) return 0;
   else if (computer_score === 0) return your_score;
@@ -36,11 +37,10 @@ const game_begins = (num) => {
 };
 
 // Computer choice
-const choice = () => {
-  let choice = Math.floor(Math.random() * 3) + 1;
-  if (choice == 1) return "rock";
-  if (choice == 2) return "paper";
-  if (choice == 3) return "scissor";
+const comp_choice = () => {
+  let choices = ["rock", "paper", "scissor"];
+  let choice_idx = Math.floor(Math.random() * 3) + 1;
+  return choices(choice_idx);
 };
 
 // Your choice = rock
