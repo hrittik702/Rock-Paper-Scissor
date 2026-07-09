@@ -12,7 +12,7 @@ let win_ratio = () => {
   else return (your_score / computer_score).toFixed(1);
 };
 
-// Changes
+// Query Selectors
 const you_scr = document.querySelector("#you p");
 const cmp_scr = document.querySelector("#computer p");
 const status = document.querySelector(".status p:nth-child(2)");
@@ -37,31 +37,33 @@ const game_begins = (num) => {
 };
 
 // Computer choice
-const comp_choice = () => {
+const getChoice = () => {
   let choices = ["rock", "paper", "scissor"];
-  let choice_idx = Math.floor(Math.random() * 3) + 1;
-  return choices(choice_idx);
+  let choice_idx = Math.floor(Math.random() * 3);
+  return choices[choice_idx];
+};
+
+// game-logic
+const ans = (user_Choice, comp_Choice) => {
+  if (user_Choice === comp_Choice) return 0;
+  let userWin = 0;
+  if (user_Choice === "rock") {
+    userWin = comp_Choice === "paper" ? -1 : 1;
+  } else if (user_Choice === "paper") {
+    userWin = comp_Choice === "scissor" ? -1 : 1;
+  } else if (user_Choice === "scissor") {
+    userWin = comp_Choice === "rock" ? -1 : 1;
+  }
+  console.log(userWin);
 };
 
 // Your Choice
 let options = document.querySelectorAll("main div");
 options.forEach((choice) => {
   choice.addEventListener("click", () => {
-    const userChoice = choice.getAttribute("id");
-    console.log(userChoice);
-    playGame(userChoice);
+    const user_Choice = choice.getAttribute("id");
+    const comp_Choice = getChoice();
+    console.log(user_Choice, comp_Choice);
+    ans(user_Choice, comp_Choice);
   });
 });
-
-// game-logic
-const ans = (you, comp) => {
-  if (you === comp) return 0;
-  //   you win
-  else if (you === "rock" && comp === "scissor") return 1;
-  else if (you === "paper" && comp === "rock") return 1;
-  else if (you === "scissor" && comp === "paper") return 1;
-  // computer win
-  else if (you === "rock" && comp === "paper") return -1;
-  else if (you === "paper" && comp === "scissor") return -1;
-  else if (you === "scissor" && comp === "rock") return -1;
-};
