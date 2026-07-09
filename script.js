@@ -43,29 +43,17 @@ const comp_choice = () => {
   return choices(choice_idx);
 };
 
-// Your choice = rock
-const rock = document.querySelector("#rock");
-rock.addEventListener("click", () => {
-  let you = "rock";
-  let comp = choice();
-  game_begins(ans(you, comp));
+// Your Choice
+let options = document.querySelectorAll("main div");
+options.forEach((choice) => {
+  choice.addEventListener("click", () => {
+    const userChoice = choice.getAttribute("id");
+    console.log(userChoice);
+    playGame(userChoice);
+  });
 });
 
-const paper = document.querySelector("#paper");
-paper.addEventListener("click", () => {
-  let you = "paper";
-  let comp = choice();
-  game_begins(ans(you, comp));
-});
-
-const scissor = document.querySelector("#scissor");
-scissor.addEventListener("click", () => {
-  let you = "scissor";
-  let comp = choice();
-  game_begins(ans(you, comp));
-});
-
-// game-login
+// game-logic
 const ans = (you, comp) => {
   if (you === comp) return 0;
   //   you win
