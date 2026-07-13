@@ -137,7 +137,8 @@ main h4 {
 }
 
 .status p:first-child {
-  background-color: white;
+  background-color: transparent;
+  color: black;
 }
 
 .status p:first-child span {

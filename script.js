@@ -32,9 +32,8 @@ const ans = (user_Choice, comp_Choice) => {
 };
 
 let win_ratio = () => {
-  if (user_score === 0 && comp_score === 0) return 0;
-  else if (comp_score === 0) return user_score;
-  else return (user_score / comp_score).toFixed(1);
+  if (rounds === 0) return 0;
+  else if (rounds !== 0) return (user_score / rounds).toFixed(1);
 };
 
 // Query Selectors
@@ -45,7 +44,6 @@ const round = document.querySelector('.status>p span');
 const winRatio = document.querySelector('nav button span');
 
 const game_begins = (num, user_Choice, comp_Choice) => {
-  round.innerHTML = `${++rounds}`;
   if (num == 0) {
     status.innerHTML = "It's draw. Try again !";
     status.style.backgroundColor = '#012552';
@@ -61,5 +59,6 @@ const game_begins = (num, user_Choice, comp_Choice) => {
     status.style.backgroundColor = 'red';
     status.style.color = 'white';
   }
+  round.innerHTML = `${++rounds}`;
   winRatio.innerHTML = `${win_ratio()}`;
 };
